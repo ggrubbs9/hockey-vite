@@ -25,7 +25,7 @@ function App() {
   };
 
   type PlayerResponse = {
-    last5games: Game[];
+    last5Games: Game[];
   };
 
   const [data, setData] = useState<Player[]>([]);
@@ -67,7 +67,6 @@ function App() {
         const json: PlayerResponse[] = await Promise.all(
           responses.map((r) => r.json())
         );
-        console.log("Fetched player data:", json);
 
         const getGoals = (games: Game[]) =>
           games.reduce((sum, g) => sum + (g.goals || 0), 0);
@@ -77,7 +76,7 @@ function App() {
           games.reduce((sum, g) => sum + (g.plusMinus || 0), 0);
 
         const combined = players.map((p, i) => {
-          const last5 = json[i].last5games ?? [];
+          const last5 = json[i].last5Games ?? [];
           return {
             name: p.name,
             position: p.pos,
